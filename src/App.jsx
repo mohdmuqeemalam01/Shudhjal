@@ -7,69 +7,30 @@ import Services from './component/services.jsx'
 import WaterManagement from './component/Water-management.jsx'
 import SignUp from './Log_reg/SignUp.jsx'
 import LogIn from './Log_reg/LogIn.jsx'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+
 function App() {
   const [page, setPage] = useState('True')
 
 
   return (
     <>
+<Router>
+  <Header />
 
+  <div style={{ marginTop: '60px' }}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<AboutUs />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/water" element={<WaterManagement />} />
+      <Route path="/login" element={<LogIn />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  </div>
 
-
-
-
-      <Router>
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', zIndex: '1', backgroundColor: 'white' }}>
-          <Header val={setPage} />
-
-        </div>
-
-
-        {
-          page == 'False' && <Routes styles={{ marginTop: '5%' }}>
-
-            <Route path='/Login' element={<LogIn />} />
-            <Route path='/Sign-Up' element={<SignUp />} />
-             
-          </Routes>
-        }
-        {
-
-
-          page == 'True' && <div>
-
-
-            <div id="Home" style={{ marginTop: '60px' }}>
-              <Home />
-            </div>
-            <div id='AboutUs' >
-              <AboutUs />
-            </div>
-            <Services />
-            <div id='Feature'>
-
-
-              <WaterManagement />
-
-            </div>
-
-
-          </div>
-        }
-
-
-
-
-        <Footer />
-      </Router>
-
-
-
-
-
-
-
+  <Footer />
+</Router>
     </>
   )
 }
